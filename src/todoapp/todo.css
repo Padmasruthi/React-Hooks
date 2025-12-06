@@ -1,0 +1,110 @@
+/* TodoApp.css - light & minimal styling */
+
+.todo-container {
+  max-width: 600px;
+  margin: 32px auto;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 20, 40, 0.06);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #111827;
+}
+
+/* Header */
+.todo-container h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.2px;
+}
+
+/* input + add button row */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.input-row input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  color: green;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.input-row input[type="text"]:focus {
+  border-color: #7c3aed; /* subtle focus */
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(180deg, #7c3aed, #5b21b6);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .08s ease, opacity .12s ease;
+}
+
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Todo list */
+ul.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 320px; /* keeps list scrollable if long */
+  overflow-y: auto;
+  border-top: 1px dashed #eef2ff;
+  padding-top: 12px;
+}
+
+/* Each item */
+ul.todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #fbfbff;
+  border: 1px solid #f1f5f9;
+}
+
+/* Todo text */
+.todo-text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* Delete button (secondary) */
+.btn-delete {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,0.12);
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .08s ease;
+}
+
+.btn-delete:hover {
+  background: rgba(239,68,68,0.06);
+}
+
+/* Small screens tweak */
+@media (max-width: 420px) {
+  .todo-container { margin: 16px; padding: 14px; }
+  .input-row input[type="text"] { padding: 9px; font-size: 0.9rem; }
+  .btn-primary { padding: 9px 10px; }
+}
