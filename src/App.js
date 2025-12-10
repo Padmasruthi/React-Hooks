@@ -8,7 +8,7 @@ import UseCallbackPage from './hooks-pages/usecallback/UseCallback'
 import UseContextPage from './hooks-pages/usecontext/UseContextPage'
 import UseReducerPage from './hooks-pages/usereducer/UseReducerPage'
 
-import TodoApp from './todoapp/TodoApp'
+// import TodoApp from './todoapp/TodoApp'
 // import TestApp from './testingApp/TestApp'
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
         <Route path='/usecallback' element={<UseCallbackPage />} />
         <Route path='/usecontext' element={<UseContextPage />} />
         <Route path='/usereducer' element={<UseReducerPage />} />
-        <Route path='/todos' element={<TodoApp />} />
+        {/* <Route path='/todos' element={<TodoApp />} /> */}
 
 
 
