@@ -1,27 +1,20 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo } from "react";
 
 export default function UseMemoPage() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
 
-    const [count, setCount] = useState(0);
-    const [text, setText] = useState("");
+  // Heavy calculation simulation
+  const expensiveCalculation = (num) => {
+    console.log("Running Heavy Calculation...");
+    let total = 0;
+    for (let i = 0; i < 100000000; i++) {
+      total += i;
+    }
+    return num * 2;
+  };
 
-    // Heavy calculation simulation
-
-    const expensiveCalculation = (num) => {
-        console.log("Running Heavy Calculation...");
-
-        // simulate delay
-
-        let total = 0;
-        for (let i = 0; i < 100000000; i++) {
-            total += i
-        }
-        return num * 2
-
-    };
-
-    const doubledValue = useMemo(() => expensiveCalculation(count), [count])
-
+  const doubledValue = useMemo(() => expensiveCalculation(count), [count]);
 
   return (
     <div
@@ -38,30 +31,51 @@ export default function UseMemoPage() {
       <div
         style={{
           background: "white",
-          padding: "40px",
+          padding: "30px 20px",
           borderRadius: "15px",
           boxShadow: "0px 4px 15px rgba(0,0,0,0.2)",
           textAlign: "center",
-          width: "380px",
+          width: "90%",
+          maxWidth: "400px",
+          boxSizing: "border-box",
         }}
       >
-        <h2 style={{ marginBottom: "20px", color: "#333" }}>useMemo Hook</h2>
+        <h2
+          style={{
+            marginBottom: "20px",
+            color: "#333",
+            fontSize: "1.5rem",
+          }}
+        >
+          useMemo Hook
+        </h2>
 
-        <h3 style={{ color: "#4F46E5" }}>Count: {count}</h3>
-        <h3 style={{ color: "#DC2626" }}>Doubled (Expensive Calculation): {doubledValue}</h3>
+        <h3 style={{ color: "#4F46E5", fontSize: "1.2rem" }}>Count: {count}</h3>
+        <h3 style={{ color: "#DC2626", fontSize: "1.2rem" }}>
+          Doubled (Expensive Calculation): {doubledValue}
+        </h3>
 
-        <div style={{ margin: "20px 0" }}>
+        <div
+          style={{
+            margin: "20px 0",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "center",
+          }}
+        >
           <button
             onClick={() => setCount(count + 1)}
             style={{
+              flex: "1 1 150px",
+              minWidth: "120px",
               background: "#10B981",
               color: "white",
               border: "none",
               padding: "10px 20px",
               borderRadius: "8px",
               cursor: "pointer",
-              fontSize: "16px",
-              marginRight: "10px",
+              fontSize: "15px",
             }}
           >
             + Increment Count
@@ -70,13 +84,15 @@ export default function UseMemoPage() {
           <button
             onClick={() => setCount(0)}
             style={{
+              flex: "1 1 150px",
+              minWidth: "120px",
               background: "#EF4444",
               color: "white",
               border: "none",
               padding: "10px 20px",
               borderRadius: "8px",
               cursor: "pointer",
-              fontSize: "16px",
+              fontSize: "15px",
             }}
           >
             Reset Count
@@ -89,11 +105,12 @@ export default function UseMemoPage() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           style={{
-            width: "90%",
-            padding: "10px",
+            width: "100%",
+            padding: "12px",
             borderRadius: "8px",
             border: "1px solid #888",
             fontSize: "16px",
+            boxSizing: "border-box",
           }}
         />
         <p style={{ marginTop: "10px" }}>You typed: {text}</p>
@@ -101,4 +118,3 @@ export default function UseMemoPage() {
     </div>
   );
 }
-

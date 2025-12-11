@@ -1,41 +1,30 @@
-// import { Link } from "react-router-dom";
-
-// export default function Navbar() {
-
-//     return (
-
-//         <nav style={{ padding: '20px', background: '#222', color: '#fff' }}>
-//             <Link to="/" style={{ marginRight: '20px', color: 'white' }}>UseState</Link>
-//             <Link to="/useeffect" style={{ marginRight: '20px', color: 'white' }}>UseEffect</Link>
-//             <Link to="/useref" style={{ marginRight: '20px', color: 'white' }}>UseRef</Link>
-//             <Link to="/usememo" style={{ marginRight: '20px', color: 'white' }}>UseMemo</Link>
-//             <Link to="/usecallback" style={{ marginRight: '20px', color: 'white' }}>UseCallback</Link>
-//             <Link to="/usecontext" style={{ marginRight: '20px', color: 'white' }}>UseContext</Link>
-//             <Link to="/usereducer" style={{ marginRight: '20px', color: 'white' }}>UseReducer</Link>
-//             <Link to="/todos" style={{ marginRight: '20px', color: 'white' }}>Todo APP</Link>
-//         </nav>
-
-//     )
-// }
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./navbar.css";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="navbar">
-      {/* LEFT SIDE TITLE */}
-      <div className="nav-title">React Hooks</div>
+      <Link to="/" className="nav-title" style={{textDecoration: 'none'}}>React Hooks</Link>
 
-      {/* RIGHT SIDE LINKS */}
-      <div className="nav-links">
-        <NavLink to="/">UseState</NavLink>
-        <NavLink to="/useeffect">UseEffect</NavLink>
-        <NavLink to="/useref">UseRef</NavLink>
-        <NavLink to="/usememo">UseMemo</NavLink>
-        <NavLink to="/usecallback">UseCallback</NavLink>
-        <NavLink to="/usecontext">UseContext</NavLink>
-        <NavLink to="/usereducer">UseReducer</NavLink>
+      <div className="hamburger" onClick={() => setOpen(!open)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div className={`nav-links ${open ? "open" : ""}`}>
+        <Link to="/" onClick={() => setOpen(false)}>UseState</Link>
+        <Link to="/useeffect" onClick={() => setOpen(false)}>UseEffect</Link>
+        <Link to="/useref" onClick={() => setOpen(false)}>UseRef</Link>
+        <Link to="/usememo" onClick={() => setOpen(false)}>UseMemo</Link>
+        <Link to="/usecallback" onClick={() => setOpen(false)}>UseCallback</Link>
+        <Link to="/usecontext" onClick={() => setOpen(false)}>UseContext</Link>
+        <Link to="/usereducer" onClick={() => setOpen(false)}>UseReducer</Link>
       </div>
     </nav>
   );
 }
+

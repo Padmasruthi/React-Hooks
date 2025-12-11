@@ -1,32 +1,34 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
 
+export default function UseRefPage() {
+  const inputRef = useRef(null);
+  const prevCount = useRef(0);
+  const renderCount = useRef(1);
 
+  const [count, setCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-export default function UseRefPage () {
+  useEffect(() => {
+    renderCount.current += 1;
+  });
 
-    const inputRef = useRef(null)  //For focusing input
-    const prevCount = useRef(0)   //To store previous value
-    const renderCount = useRef(1) //Count renders without re-rendering
+  useEffect(() => {
+    prevCount.current = count;
+  }, [count]);
 
-    const [count, setCount] =useState(0)
+  // Detect mobile screen only (<480px)
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 480);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
-    useEffect(() => {
-        // track renders(no re-render caused by useRef)
-        renderCount.current += 1
-    })
+  const handleFocus = () => {
+    inputRef.current?.focus();
+  };
 
-    // store previous value
-    useEffect(() => {
-        prevCount.current = count
-    }, [count])
-
-    const handleFocus = () => {
-        console.log("Focusing input...");
-        
-        inputRef.current.focus(); //DOM focus
-    }
-
-return (
+  return (
     <div
       style={{
         padding: "30px",
@@ -45,58 +47,67 @@ return (
           borderRadius: "15px",
           boxShadow: "0px 4px 15px rgba(0,0,0,0.2)",
           textAlign: "center",
-          width: "380px",
+          width: isMobile ? "90%" : "380px",   // ONLY mobile responsive
         }}
       >
         <h2 style={{ marginBottom: "20px", color: "#333" }}>useRef Hook</h2>
 
+        {/* Input + Focus Button */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
+            marginBottom: "25px",
+          }}
+        >
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Type something..."
+            style={{
+              width: isMobile ? "100%" : "70%",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "1px solid #888",
+              fontSize: "16px",
+            }}
+          />
 
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "10px",
-    marginBottom: "25px", // same spacing as your old button
-  }}
->
-  <input
-    ref={inputRef}
-    type="text"
-    placeholder="Type something..."
-    style={{
-      width: "70%", // equivalent to your old 90% inside flex
-      padding: "10px",
-      borderRadius: "8px",
-      border: "1px solid #888",
-      fontSize: "16px",
-    }}
-  />
+          <button
+            onClick={handleFocus}
+            style={{
+              background: "#e758bcff",
+              color: "white",
+              border: "2px solid #d328a0ff",
+              padding: "7px",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontSize: "12px",
+              width: isMobile ? "100%" : "",
+            }}
+          >
+            Focus Input
+          </button>
+        </div>
 
-  <button
-    onClick={handleFocus}
-    style={{
-      background: "#e758bcff",
-      color: "white",
-      border: "2px solid #d328a0ff",
-      padding: "10px 20px",
-      borderRadius: "8px",
-      cursor: "pointer",
-      fontSize: "16px",
-      whiteSpace: "nowrap",
-    }}
-  >
-    Focus Input
-  </button>
-</div>
-
-
-        {/* Counter Section */}
         <h3 style={{ color: "#4F46E5" }}>Current Count: {count}</h3>
         <h4 style={{ color: "#DC2626" }}>Previous Count: {prevCount.current}</h4>
         <h4 style={{ color: "#059669" }}>Render Count: {renderCount.current}</h4>
 
-        <div style={{ marginTop: "20px" }}>
+        {/* Increment + Reset */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            gap: "10px",
+            marginTop: "20px",
+            width: "100%",
+            justifyContent: "center",
+          }}
+        >
           <button
             onClick={() => setCount((c) => c + 1)}
             style={{
@@ -107,7 +118,7 @@ return (
               borderRadius: "8px",
               cursor: "pointer",
               fontSize: "16px",
-              marginRight: "10px",
+              width: isMobile ? "100%" : "auto",
             }}
           >
             + Increment
@@ -123,6 +134,7 @@ return (
               borderRadius: "8px",
               cursor: "pointer",
               fontSize: "16px",
+              width: isMobile ? "100%" : "auto",
             }}
           >
             Reset
@@ -130,12 +142,5 @@ return (
         </div>
       </div>
     </div>
-
-
-
-
-
   );
 }
-
- 

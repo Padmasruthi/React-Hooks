@@ -15,7 +15,7 @@ export default function UseContextPage() {
       <div
         style={{
           padding: "30px",
-          minHeight: "80vh",
+          minHeight: "81vh",
           background: dark
             ? "linear-gradient(135deg, #4C1D95, #7C3AED)" // 🌙 DARK PURPLE
             : "linear-gradient(135deg, #A78BFA, #6366F1)", // ☀️ LIGHT PURPLE

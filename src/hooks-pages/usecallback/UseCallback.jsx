@@ -1,109 +1,3 @@
-// import { useState, useCallback } from "react";
-
-// export default function UseCallbackPage() {
-//     const [count, setCount] = useState(0);
-//     const [text, setText] = useState("");
-
-//     console.log("Parent rendered");
-
-//     const handleClick = useCallback(() => {
-//         console.log("Button clicked! Current count is:", count);
-//     }, [count]);
-
-//     return (
-//         <div
-//             style={{
-//                 padding: "30px",
-//                 minHeight: "81vh",
-//                 background: "linear-gradient(135deg, #a5f5fcff, #81f8f8ff)", 
-//                 display: "flex",
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//                 fontFamily: "Arial",
-//             }}
-//         >
-//             <div
-//                 style={{
-//                     background: "white",
-//                     padding: "40px",
-//                     borderRadius: "15px",
-//                     boxShadow: "0px 4px 15px rgba(0,0,0,0.2)",
-//                     textAlign: "center",
-//                     width: "380px",
-//                 }}
-//             >
-//                 <h2 style={{ marginBottom: "20px", color: "#1E1E1E" }}>
-//                     useCallback Hook
-//                 </h2>
-
-//                 {/* Count Display */}
-//                 <h1
-//                     style={{
-//                         fontSize: "48px",
-//                         color: "#46dde5ff",
-//                         marginBottom: "25px",
-//                     }}
-//                 >
-//                     {count}
-//                 </h1>
-
-//                 {/* Increment Button */}
-//                 <button
-//                     onClick={() => setCount((prev) => prev + 1)}
-//                     style={{
-//                         background: "#63c2f1ff",
-//                         color: "white",
-//                         border: "none",
-//                         padding: "12px 25px",
-//                         borderRadius: "8px",
-//                         cursor: "pointer",
-//                         fontSize: "16px",
-//                         marginRight: "10px",
-//                     }}
-//                 >
-//                     + Increment
-//                 </button>
-
-//                 {/* Log Count Button */}
-//                 <button
-//                     onClick={handleClick}
-//                     style={{
-//                         background: "#38aacaff",
-//                         color: "white",
-//                         border: "none",
-//                         padding: "12px 25px",
-//                         borderRadius: "8px",
-//                         cursor: "pointer",
-//                         fontSize: "16px",
-//                     }}
-//                 >
-//                     Log Count
-//                 </button>
-
-//                 {/* Input Box */}
-//                 <div style={{ marginTop: "30px" }}>
-//                     <input
-//                         type="text"
-//                         placeholder="Type something..."
-//                         value={text}
-//                         onChange={(e) => setText(e.target.value)}
-//                         style={{
-//                             width: "90%",
-//                             padding: "12px",
-//                             borderRadius: "8px",
-//                             border: "2px solid #38aacaff",
-//                             outline: "none",
-//                             fontSize: "16px",
-//                         }}
-//                     />
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-
-
 import { useState, useCallback } from "react";
 
 export default function UseCallbackPage() {
@@ -154,37 +48,50 @@ export default function UseCallbackPage() {
         </h1>
 
         {/* Increment Button */}
-        <button
-          onClick={() => setCount((prev) => prev + 1)}
-          style={{
-            background: "#63c2f1ff",
-            color: "white",
-            border: "none",
-            padding: "12px 25px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-            marginRight: "10px",
-          }}
-        >
-          + Increment
-        </button>
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    justifyContent: "center",
+    marginBottom: "20px",
+  }}
+>
+  <button
+    onClick={() => setCount((prev) => prev + 1)}
+    style={{
+      flex: "1 1 120px", // responsive width
+      minWidth: "120px",
+      background: "#63c2f1ff",
+      color: "white",
+      border: "none",
+      padding: "12px 25px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      fontSize: "16px",
+    }}
+  >
+    + Increment
+  </button>
 
-        {/* Log Count Button */}
-        <button
-          onClick={handleClick}
-          style={{
-            background: "#38aacaff",
-            color: "white",
-            border: "none",
-            padding: "12px 25px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
-        >
-          Log Count
-        </button>
+  <button
+    onClick={handleClick}
+    style={{
+      flex: "1 1 120px", // responsive width
+      minWidth: "120px",
+      background: "#38aacaff",
+      color: "white",
+      border: "none",
+      padding: "12px 25px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      fontSize: "16px",
+    }}
+  >
+    Log Count
+  </button>
+</div>
+
 
         {/* Message for Log Count */}
         {message && (

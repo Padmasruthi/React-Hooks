@@ -3,20 +3,9 @@ import { useState } from "react";
 export default function UseStatePage() {
   const [count, setCount] = useState(0);
 
-  const handleInc = () => {
-    console.log("Increment Clicked | Before update:", count);
-    setCount((prev) => prev + 1);
-  };
-
-  const handleDec = () => {
-    console.log("Decrement Clicked | Before update:", count);
-    setCount((prev) => prev - 1);
-  };
-
-  const handleReset = () => {
-    console.log("Reset Clicked | Before update:", count);
-    setCount(0);
-  };
+  const handleInc = () => setCount((prev) => prev + 1);
+  const handleDec = () => setCount((prev) => prev - 1);
+  const handleReset = () => setCount(0);
 
   return (
     <div
@@ -52,7 +41,16 @@ export default function UseStatePage() {
           {count}
         </h1>
 
-        <div>
+        {/* BUTTON CONTAINER */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: window.innerWidth <= 480 ? "column" : "row",
+            gap: "10px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <button
             onClick={handleInc}
             style={{
@@ -61,9 +59,9 @@ export default function UseStatePage() {
               border: "none",
               padding: "10px 20px",
               borderRadius: "8px",
-              marginRight: "10px",
               cursor: "pointer",
               fontSize: "16px",
+              width: window.innerWidth <= 480 ? "100%" : "auto",
             }}
           >
             + Increment
@@ -77,9 +75,9 @@ export default function UseStatePage() {
               border: "none",
               padding: "10px 20px",
               borderRadius: "8px",
-              marginRight: "10px",
               cursor: "pointer",
               fontSize: "16px",
+              width: window.innerWidth <= 480 ? "100%" : "auto",
             }}
           >
             - Decrement
@@ -95,7 +93,7 @@ export default function UseStatePage() {
               borderRadius: "8px",
               cursor: "pointer",
               fontSize: "16px",
-              marginTop: "15px",
+              width: window.innerWidth <= 480 ? "100%" : "auto",
             }}
           >
             Reset
@@ -105,4 +103,3 @@ export default function UseStatePage() {
     </div>
   );
 }
-
