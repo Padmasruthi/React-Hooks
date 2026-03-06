@@ -291,16 +291,16 @@ import { useEffect, useState } from "react";
 function Child({ onUnmount, showToast }) {
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log("Child Mounted");
-    showToast("Child Mounted → useEffect executed");
+  // useEffect(() => {
+  //   console.log("Child Mounted");
+  //   showToast("Child Mounted → useEffect executed");
 
-    return () => {
-      console.log("Child Unmounted");
-      showToast("Child Unmounted → Cleanup executed");
-      onUnmount();
-    };
-  }, [onUnmount, showToast]);
+  //   return () => {
+  //     console.log("Child Unmounted");
+  //     showToast("Child Unmounted → Cleanup executed");
+  //     onUnmount();
+  //   };
+  // }, [onUnmount, showToast]);
 
   return (
     <div
